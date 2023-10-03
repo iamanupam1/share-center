@@ -1,7 +1,7 @@
-import { getStockAbbrevation } from "./actions/stock/stockAbbrevation";
+import { getStockAbbrevation } from "@/actions/stock/stockAbbrevation";
 
 async function Home() {
-  const stockAbbrevationList = await getStockAbbrevation();
+  const stockAbbrevationList = await getStockAbbrevation()
   return (
     <div className="flex justify-center">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg my-5">
