@@ -9,6 +9,6 @@ export const connectDB = async () => {
       console.log("DB Connected");
     }
   } catch (error) {
-    console.error(err);
+    console.error(error);
   }
 };
