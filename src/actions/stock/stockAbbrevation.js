@@ -1,4 +1,4 @@
-import { MEROLAGANI_STOCK_ABBREV_URL } from "@/app/config";
+import { MEROLAGANI_STOCK_ABBREV_URL } from "../../../config";
 import { connectDB } from "@/lib/helpers/database";
 import StockAbbrevation from "@/lib/models/StockAbbreviation";
 import axios from "axios";

@@ -1,0 +1,5 @@
+import { MEROLAGANI_LATEST_STOCK_URL } from "../../config";
+
+export const URL_MAPPER = {
+  MEROLAGANI_URL: MEROLAGANI_LATEST_STOCK_URL,
+};
