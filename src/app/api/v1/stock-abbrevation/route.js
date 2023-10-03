@@ -23,8 +23,8 @@ export async function GET() {
   } catch (error) {
     console.log("error");
   }
-  return NextResponse.json({ message: "hello" });
 }
+
 export async function POST() {
   try {
     const addedStock = await addStockAbbrevation();
