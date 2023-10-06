@@ -1,4 +1,7 @@
-import { addLatestStockData, getLatestStockData } from "@/actions/stock/stockTrend";
+import {
+  addLatestStockData,
+  getLatestStockData,
+} from "@/actions/stock/stockTrend";
 import { NextResponse } from "next/server";
 
 export async function GET() {

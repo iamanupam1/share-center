@@ -2,14 +2,12 @@ import axios from "axios";
 import { MEROLAGANI_LATEST_STOCK_URL } from "../../../config";
 import cheerio from "cheerio";
 
-export async function latestStockDataScraper(url) {
-  if (!url) return;
+export async function latestStockDataScraper() {
   try {
     let finalArray = [];
     const resp = await axios.get(MEROLAGANI_LATEST_STOCK_URL);
     const $ = cheerio.load(resp.data);
-    const tableRows = $("table tr");
-    const dateValue = $(".date-label live-trading-label-1");
+    const tableRows = $("#live-trading table tr");
     tableRows.each((index, element) => {
       if (index !== 0) {
         const columns = $(element).find("td");
@@ -23,7 +21,7 @@ export async function latestStockDataScraper(url) {
           quantity: $(columns[6]).text(),
           previousClose: Number($(columns[7]).text()) || 0,
           difference: Number($(columns[8]).text()) || 0,
-          date: dateValue.text() || Date.now(),
+          date: Date.now(),
         });
       }
     });
