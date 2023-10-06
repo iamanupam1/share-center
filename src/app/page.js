@@ -2,6 +2,7 @@ import { getLatestStockData } from "@/actions/stock/stockTrend";
 
 async function Home() {
   const latestStockList = await getLatestStockData();
+  console.log("latestStockList", latestStockList);
   return (
     <div className="flex justify-center">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg my-5">

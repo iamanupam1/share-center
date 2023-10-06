@@ -1,29 +1,29 @@
 import axios from "axios";
-import { MEROLAGANI_LATEST_STOCK_URL } from "../../../config";
+import { SHARE_SANSAR_LATEST_MARKET_URL } from "../../../config";
 import cheerio from "cheerio";
 
 export async function latestStockDataScraper() {
   try {
     let finalArray = [];
-    const resp = await axios.get(MEROLAGANI_LATEST_STOCK_URL);
+    const resp = await axios.get(SHARE_SANSAR_LATEST_MARKET_URL);
     const $ = cheerio.load(resp.data);
-    const tableRows = $("#live-trading table tr");
+    const tableRows = $("table tbody tr");
+    const dateValue = $("#dDate").text().trim();
+    const currentDate = new Date().toISOString();
     tableRows.each((index, element) => {
-      if (index !== 0) {
-        const columns = $(element).find("td");
-        finalArray.push({
-          symbol: $(columns[0]).text(),
-          ltp: Number($(columns[1]).text()) || 0,
-          change: Number($(columns[2]).text()) || 0,
-          open: Number($(columns[3]).text()) || 0,
-          high: Number($(columns[4]).text()) || 0,
-          low: Number($(columns[5]).text()) || 0,
-          quantity: $(columns[6]).text(),
-          previousClose: Number($(columns[7]).text()) || 0,
-          difference: Number($(columns[8]).text()) || 0,
-          date: Date.now(),
-        });
-      }
+      const columns = $(element).find("td");
+      finalArray.push({
+        symbol: $(columns[1]).text().trim() || "",
+        ltp: $(columns[2]).text().trim() || "",
+        difference: $(columns[3]).text().trim() || "",
+        change: $(columns[4]).text().trim() || "",
+        open: $(columns[5]).text().trim() || "",
+        high: $(columns[6]).text().trim() || "",
+        low: $(columns[7]).text().trim() || "",
+        quantity: $(columns[8]).text().trim() || "",
+        previousClose: $(columns[9]).text().trim() || "",
+        date: new Date(dateValue) || currentDate,
+      });
     });
     return finalArray;
   } catch (error) {

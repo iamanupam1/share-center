@@ -1,7 +1,6 @@
 import { connectDB } from "@/lib/helpers/database";
 import StockTrendData from "@/lib/models/StockTrendData";
 import { latestStockDataScraper } from "@/utils/scraper";
-import { MEROLAGANI_URL } from "../../../config";
 
 export const getLatestStockData = async () => {
   try {
@@ -27,7 +26,7 @@ export const addLatestStockData = async () => {
       }));
       return StockTrendData.bulkWrite(createORupdateOperations);
     }
-  } catch (error) {
+      } catch (error) {
     console.log(error);
   }
 };
