@@ -26,7 +26,8 @@ export const addLatestStockData = async () => {
       }));
       return StockTrendData.bulkWrite(createORupdateOperations);
     }
-      } catch (error) {
+    return null;
+  } catch (error) {
     console.log(error);
   }
 };

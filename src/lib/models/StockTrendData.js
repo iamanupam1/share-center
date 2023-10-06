@@ -10,28 +10,28 @@ const stockTrendDataSchema = new mongoose.Schema({
     type: Date,
   },
   ltp: {
-    type: Number,
+    type: String,
   },
   change: {
-    type: Number,
+    type: String,
   },
   open: {
-    type: Number,
+    type: String,
   },
   high: {
-    type: Number,
+    type: String,
   },
   low: {
-    type: Number,
+    type: String,
   },
   quantity: {
     type: String,
   },
   previousClose: {
-    type: Number,
+    type: String,
   },
   difference: {
-    type: Number,
+    type: String,
   },
 });
 
