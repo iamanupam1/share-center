@@ -16,18 +16,17 @@ export const getLatestStockData = async () => {
 export const addLatestStockData = async () => {
   try {
     const scrappedMerolaganiData = await latestStockDataScraper();
-    return scrappedMerolaganiData;
-    // if (scrappedMerolaganiData?.length) {
-    //   connectDB();
-    //   const createORupdateOperations = scrappedMerolaganiData.map((data) => ({
-    //     updateOne: {
-    //       filter: { date: data["date"], symbol: data["symbol"] },
-    //       update: { $set: data },
-    //       upsert: true,
-    //     },
-    //   }));
-    //   return StockTrendData.bulkWrite(createORupdateOperations);
-    // }
+    if (scrappedMerolaganiData?.length) {
+      connectDB();
+      const createORupdateOperations = scrappedMerolaganiData.map((data) => ({
+        updateOne: {
+          filter: { date: data["date"], symbol: data["symbol"] },
+          update: { $set: data },
+          upsert: true,
+        },
+      }));
+      return StockTrendData.bulkWrite(createORupdateOperations);
+    }
   } catch (error) {
     console.log(error);
   }
