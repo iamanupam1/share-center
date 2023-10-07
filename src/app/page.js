@@ -1,8 +1,16 @@
+import { getStockAbbrevation } from "@/actions/stock/stockAbbrevation";
 import { getLatestStockData } from "@/actions/stock/stockTrend";
 
 async function Home() {
   const latestStockList = await getLatestStockData();
-  console.log("latestStockList", latestStockList);
+  const latestStockAbbreviation = await getStockAbbrevation();
+
+  const getFullName = (abbrev) => {
+    return (
+      latestStockAbbreviation.find((item) => item.abbrev === abbrev)
+        ?.fullName || ""
+    );
+  };
   return (
     <div className="flex justify-center">
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg my-5">
@@ -45,7 +53,15 @@ async function Home() {
                   className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                   key={stock._id}
                 >
-                  <td className="px-6 py-4">{stock.symbol}</td>
+                  <td className="px-6 py-4">
+                    <a
+                      href="#"
+                      data-te-toggle="tooltip"
+                      title={getFullName(stock.symbol)}
+                    >
+                      {stock.symbol}
+                    </a>
+                  </td>
                   <td className="px-6 py-4">{stock.ltp}</td>
                   <td className="px-6 py-4">{stock.change}</td>
                   <td className="px-6 py-4">{stock.open}</td>
