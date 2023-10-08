@@ -4,13 +4,14 @@ import React, { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Loader from "../common/Loader";
+import HeroIcon from "../common/HeroIcon";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -52,13 +53,22 @@ const LoginForm = () => {
             />
           </div>
 
-          <div className="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-teal-600">
+          <div className="flex flex-column w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-teal-600">
             <input
               onChange={(e) => setPassword(e.target.value)}
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
               className="w-full border-none bg-transparent outline-none focus:outline-none"
             />
+            <span
+              className="cursor-pointer"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              <HeroIcon
+                name={showPassword ? "EyeIcon" : "EyeSlashIcon"}
+                className="text-[#fff]"
+              />
+            </span>
           </div>
           <button
             className="transform rounded-sm bg-teal-600 py-2 font-bold duration-300 hover:bg-teal-600"

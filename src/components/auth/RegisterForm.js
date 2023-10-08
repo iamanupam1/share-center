@@ -3,6 +3,7 @@ import axios from "axios";
 import Link from "next/link";
 import React, { useState } from "react";
 import Loader from "../common/Loader";
+import HeroIcon from "../common/HeroIcon";
 
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
@@ -10,6 +11,7 @@ const RegisterForm = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -66,14 +68,23 @@ const RegisterForm = () => {
             />
           </div>
 
-          <div className="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-teal-600">
+          <div className="flex flex-column w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-teal-600">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
               value={password}
               className="w-full border-none bg-transparent outline-none focus:outline-none"
               onChange={(e) => setPassword(e.target.value)}
             />
+            <span
+              className="cursor-pointer"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              <HeroIcon
+                name={showPassword ? "EyeIcon" : "EyeSlashIcon"}
+                className="text-[#fff]"
+              />
+            </span>
           </div>
 
           <button
