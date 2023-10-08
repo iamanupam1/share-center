@@ -3,7 +3,7 @@ const Loader = ({ height = 4, width = 4, hideText = false }) => {
     <div className="flex items-center space-x-2 justify-center">
       <div aria-label="Loading..." role="status">
         <svg
-          className={`animate-spin w-${width} h-${height} stroke-slate-500`}
+          className={`animate-spin w-${width} h-${height} stroke-white-500`}
           viewBox="0 0 256 256"
         >
           <line
@@ -81,7 +81,7 @@ const Loader = ({ height = 4, width = 4, hideText = false }) => {
         </svg>
       </div>
       {!hideText && (
-        <span className="text-xs font-medium text-slate-500">Loading...</span>
+        <span className="text-xs font-medium text-white-500">Loading...</span>
       )}
     </div>
   );

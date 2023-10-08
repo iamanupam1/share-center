@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
         className="bg-gray-900 h-screen md:block shadow-xl px-3 w-30 md:w-60 lg:w-60 overflow-x-hidden transition-transform duration-300 ease-in-out border-r-2 border-teal-500 text-white"
       >
         <div className="space-y-6 md:space-y-10 mt-10">
-          <h1 className="hidden md:block font-bold text-sm md:text-xl text-center">
+        <h1 className="hidden md:block font-bold text-sm md:text-xl text-center">
             Share Center<span className="text-teal-600">.</span>
           </h1>
           <div className="flex border-2 border-gray-200 rounded-md focus-within:ring-2 ring-teal-500">
@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
               placeholder="Search"
             />
             <button className="rounded-tr-md rounded-br-md px-2 py-1 hidden md:block">
-              <HeroIcon name="MagnifyingGlassIcon" className="text-[#fff]" />
+              <HeroIcon name="MagnifyingGlassIcon" className="text-white-500" />
             </button>
           </div>
           <div id="menu" className="flex flex-col space-y-2">
@@ -37,7 +37,7 @@ const Layout = ({ children }) => {
                     activePathname === nav.url ? "bg-teal-500" : ""
                   }`}
                 >
-                  <HeroIcon name={nav.icon} className="text-[#fff] mr-2" />
+                  <HeroIcon name={nav.icon} className="text-white-500 mr-2" />
                   <span>{nav.name}</span>
                 </Link>
               );
@@ -49,7 +49,7 @@ const Layout = ({ children }) => {
             >
               <HeroIcon
                 name={"ArrowRightOnRectangleIcon"}
-                className="text-[#fff] mr-2"
+                className="text-white-500 mr-2"
               />
               <span className="">Log Out</span>
             </a>

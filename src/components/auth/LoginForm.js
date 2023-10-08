@@ -66,7 +66,7 @@ const LoginForm = () => {
             >
               <HeroIcon
                 name={showPassword ? "EyeIcon" : "EyeSlashIcon"}
-                className="text-[#fff]"
+                className="text-white-500"
               />
             </span>
           </div>
