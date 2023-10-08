@@ -3,6 +3,10 @@ import { connectDB } from "@/lib/helpers/database";
 import StockAbbrevation from "@/lib/models/StockAbbreviation";
 import axios from "axios";
 
+export const maxDuration = 10;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const getStockAbbrevation = async () => {
   try {
     connectDB();

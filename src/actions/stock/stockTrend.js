@@ -2,6 +2,10 @@ import { connectDB } from "@/lib/helpers/database";
 import StockTrendData from "@/lib/models/StockTrendData";
 import { latestStockDataScraper } from "@/utils/scraper";
 
+export const maxDuration = 10;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const getLatestStockData = async () => {
   try {
     connectDB();

@@ -1,7 +1,7 @@
 import { getStockAbbrevation } from "@/actions/stock/stockAbbrevation";
 import { getLatestStockData } from "@/actions/stock/stockTrend";
 import LandingPage from "@/components/core/LandingPage";
-import Layout from "@/components/core/Layout";
+import Layout from "@/components/common/Layout";
 
 async function Dashboard() {
   const latestStockList = await getLatestStockData();
