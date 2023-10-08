@@ -13,6 +13,12 @@ const RegisterForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
+  const resetFields = () => {
+    setFullName("");
+    setEmail("");
+    setPassword("");
+  };
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -29,10 +35,9 @@ const RegisterForm = () => {
         password,
       });
       if (resp.data) {
-        const form = e.target;
-        form.reset();
-        router.push("/core");
+        resetFields();
         setIsLoading(false);
+        router.push("/core");
       }
       return null;
     } catch (error) {
