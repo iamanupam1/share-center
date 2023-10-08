@@ -26,7 +26,7 @@ const RegisterForm = () => {
         fullName,
         password,
       });
-      if (resp.ok && resp.data) {
+      if (resp.data) {
         const form = e.target;
         form.reset();
         router.push("/core");
