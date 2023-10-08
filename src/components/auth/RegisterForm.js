@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import Loader from "../common/Loader";
 import HeroIcon from "../common/HeroIcon";
+import { useRouter } from "next/navigation";
 
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
@@ -12,6 +13,8 @@ const RegisterForm = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
+  const router = useRouter();
 
   const resetFields = () => {
     setFullName("");
