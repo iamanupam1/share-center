@@ -8,7 +8,7 @@ async function Dashboard() {
   const latestStockAbbreviation = await getStockAbbrevation();
 
   return (
-    <div id="view" className="h-full w-screen flex flex-row">
+    <div className="bg-gray-50 dark:bg-gray-800">
       <Layout>
         <LandingPage
           latestStockList={latestStockList}

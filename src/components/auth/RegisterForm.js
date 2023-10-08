@@ -76,7 +76,7 @@ const RegisterForm = () => {
             />
           </div>
 
-          <div className="flex flex-column w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-teal-600">
+          <div className="flex flex-column items-center w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-teal-600">
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Password"
