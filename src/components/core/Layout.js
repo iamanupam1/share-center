@@ -2,7 +2,7 @@
 import { signOut, useSession } from "next-auth/react";
 
 const Layout = ({ children }) => {
-  const { data: session } = useSession();
+  const { data } = useSession();
   return (
     <div id="view" className="h-full w-screen flex flex-row">
       <div

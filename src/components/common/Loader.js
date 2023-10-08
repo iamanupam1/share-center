@@ -1,4 +1,4 @@
-const Loader = ({ height, width, hideText }) => {
+const Loader = ({ height = 4, width = 4, hideText = false }) => {
   return (
     <div className="flex items-center space-x-2 justify-center">
       <div aria-label="Loading..." role="status">
@@ -85,11 +85,6 @@ const Loader = ({ height, width, hideText }) => {
       )}
     </div>
   );
-};
-Loader.defaultProps = {
-  height: 4,
-  width: 4,
-  hideText: false,
 };
 
 export default Loader;
