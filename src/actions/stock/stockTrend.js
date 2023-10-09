@@ -9,7 +9,25 @@ export const revalidate = 0;
 export const getLatestStockData = async () => {
   try {
     connectDB();
-    const stocks = await StockTrendData.find({});
+    const stocks = await StockTrendData.aggregate([
+      { $sort: { date: -1 } },
+      { $group: { _id: "$symbol", latest: { $first: "$$ROOT" } } },
+      {
+        $project: {
+          _id: "$latest._id",
+          date: "$latest.date",
+          symbol: "$latest.symbol",
+          change: "$latest.change",
+          difference: "$latest.difference",
+          high: "$latest.high",
+          low: "$latest.low",
+          ltp: "$latest.ltp",
+          open: "$latest.open",
+          previousClose: "$latest.previousClose",
+          quantity: "$latest.quantity",
+        },
+      },
+    ]);
     return stocks;
   } catch (error) {
     console.log(error);
