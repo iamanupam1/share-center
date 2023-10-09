@@ -9,8 +9,9 @@ import { Avatar, Dropdown } from "flowbite-react";
 
 const Layout = ({ children }) => {
   const { data: session } = useSession();
+  const userFullName = session?.user.fullName;
   const userEmail = session?.user.email;
-  const imagePlaceholder = userEmail?.slice(0, 2).toUpperCase() || "NA";
+  const imagePlaceholder = userFullName?.slice(0, 2).toUpperCase() || "NA";
   const activePathname = usePathname();
   return (
     <div className="bg-gray-900 dark:bg-gray-900">
@@ -60,7 +61,7 @@ const Layout = ({ children }) => {
                   }
                 >
                   <Dropdown.Header>
-                    <span className="block text-sm">Full Name</span>
+                    <span className="block text-sm">{userFullName}</span>
                     <span className="block truncate text-sm font-medium">
                       {userEmail}
                     </span>

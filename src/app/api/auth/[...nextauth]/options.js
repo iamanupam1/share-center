@@ -37,4 +37,18 @@ export const options = {
     signIn: "/",
     signUp: "/register",
   },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.user = user;
+      }
+      return token;
+    },
+    session({ session, token }) {
+      if (token && session.user) {
+        session.user = token.user;
+      }
+      return session;
+    },
+  },
 };
