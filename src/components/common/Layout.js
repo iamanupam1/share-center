@@ -1,13 +1,16 @@
 "use client";
 
 import { CORE_SIDE_NAV } from "@/utils";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import HeroIcon from "./HeroIcon";
 import { Avatar, Dropdown } from "flowbite-react";
 
 const Layout = ({ children }) => {
+  const { data: session } = useSession();
+  const userEmail = session?.user.email;
+  const imagePlaceholder = userEmail?.slice(0, 2).toUpperCase() || "NA";
   const activePathname = usePathname();
   return (
     <div className="bg-gray-900 dark:bg-gray-900">
@@ -48,12 +51,18 @@ const Layout = ({ children }) => {
                 <Dropdown
                   arrowIcon={false}
                   inline
-                  label={<Avatar placeholderInitials="A" rounded size="sm" />}
+                  label={
+                    <Avatar
+                      placeholderInitials={imagePlaceholder}
+                      rounded
+                      size="sm"
+                    />
+                  }
                 >
                   <Dropdown.Header>
-                    <span className="block text-sm">Bonnie Green</span>
+                    <span className="block text-sm">Full Name</span>
                     <span className="block truncate text-sm font-medium">
-                      name@flowbite.com
+                      {userEmail}
                     </span>
                   </Dropdown.Header>
                   <Dropdown.Item>Dashboard</Dropdown.Item>

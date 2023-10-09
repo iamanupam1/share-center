@@ -1,4 +1,5 @@
 import ChartComponent from "./ChartComponent";
+import MonthlyStatComponent from "./MonthlyStatComponent";
 
 const LandingPage = ({ latestStockList, latestStockAbbreviation }) => {
   const getFullName = (abbrev) => {
@@ -15,10 +16,10 @@ const LandingPage = ({ latestStockList, latestStockAbbreviation }) => {
           <div className="flex items-center justify-between mb-4">
             <div className="flex-shrink-0">
               <span className="text-xl font-bold leading-none text-gray-900 sm:text-2xl dark:text-white">
-                $45,385
+                NPR 5,385
               </span>
               <h3 className="text-base font-light text-gray-500 dark:text-gray-400">
-                Sales this week
+                Last Day
               </h3>
             </div>
             <div className="flex items-center justify-end flex-1 text-base font-medium text-green-500 dark:text-green-400">
@@ -101,52 +102,7 @@ const LandingPage = ({ latestStockList, latestStockAbbreviation }) => {
             </div>
             <div data-popper-arrow="" />
           </div>
-          <div className="sm:hidden">
-            <label htmlFor="tabs" className="sr-only">
-              Select tab
-            </label>
-            <select
-              id="tabs"
-              className="bg-gray-50 border-0 border-b border-gray-200 text-gray-900 text-sm rounded-t-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-            >
-              <option>Statistics</option>
-              <option>Services</option>
-              <option>FAQ</option>
-            </select>
-          </div>
-          <ul
-            className="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg sm:flex dark:divide-gray-600 dark:text-gray-400"
-            id="fullWidthTab"
-            data-tabs-toggle="#fullWidthTabContent"
-            role="tablist"
-          >
-            <li className="w-full">
-              <button
-                id="faq-tab"
-                data-tabs-target="#faq"
-                type="button"
-                role="tab"
-                aria-controls="faq"
-                aria-selected="true"
-                className="inline-block w-full p-4 rounded-tl-lg bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600"
-              >
-                Top products
-              </button>
-            </li>
-            <li className="w-full">
-              <button
-                id="about-tab"
-                data-tabs-target="#about"
-                type="button"
-                role="tab"
-                aria-controls="about"
-                aria-selected="false"
-                className="inline-block w-full p-4 rounded-tr-lg bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600"
-              >
-                Top Customers
-              </button>
-            </li>
-          </ul>
+          <MonthlyStatComponent />
         </div>
       </div>
       {/* Latest Market Summary */}
