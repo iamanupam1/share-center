@@ -77,7 +77,7 @@ const Layout = ({ children }) => {
           </div>
         </div>
       </nav>
-      <div className="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
+      <div className="flex pt-16 overflow-hidden h-[100vh] bg-gray-50 dark:bg-gray-900">
         <aside
           id="sidebar"
           className="fixed top-0 left-0 z-20 flex flex-col flex-shrink-0 hidden w-64 h-full pt-16 font-normal duration-75 lg:flex transition-width"

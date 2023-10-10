@@ -1,7 +1,4 @@
-import {
-  addStockAbbrevation,
-  getStockAbbrevation,
-} from "@/actions/stock/stockAbbrevation";
+import { addStockAbbrevation, getStockAbbreviation } from "@/actions/stock/stockAbbrevation";
 import { NextResponse } from "next/server";
 
 export const maxDuration = 10;
@@ -10,7 +7,7 @@ export const revalidate = 0;
 
 export async function GET() {
   try {
-    const stockList = await getStockAbbrevation();
+    const stockList = await getStockAbbreviation();
     if (!stockList) {
       return NextResponse.json({
         error: "Failed to Fetch Stock Abbrevation Data",

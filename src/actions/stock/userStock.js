@@ -1,5 +1,6 @@
 import { connectDB } from "@/lib/helpers/database";
 import UserStocks from "@/lib/models/UserStock";
+import { v4 as uuidv4 } from "uuid";
 
 export const getUserStocks = async (userId) => {
   if (!userId) return null;
@@ -18,6 +19,7 @@ export const addUserStock = async (payload) => {
     const { symbol, quantity, userId } = payload;
     connectDB();
     const addedStock = new UserStocks({
+      guid: uuidv4(),
       symbol,
       quantity,
       user: userId,

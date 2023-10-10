@@ -1,16 +1,17 @@
 import { MEROLAGANI_STOCK_ABBREV_URL } from "../../../config";
 import { connectDB } from "@/lib/helpers/database";
-import StockAbbrevation from "@/lib/models/StockAbbreviation";
+import StockAbbreviation from "@/lib/models/StockAbbreviation";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 export const maxDuration = 10;
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export const getStockAbbrevation = async () => {
+export const getStockAbbreviation = async () => {
   try {
     connectDB();
-    const stocks = await StockAbbrevation.find({});
+    const stocks = await StockAbbreviation.find({}, "-_id");
     return stocks;
   } catch (error) {
     console.log(error);
@@ -29,11 +30,11 @@ export const addStockAbbrevation = async () => {
       const updateOperations = preparedData.map((data) => ({
         updateOne: {
           filter: { abbrev: data["abbrev"] },
-          update: { $set: data },
+          update: { $set: { ...data, guid: uuidv4() } },
           upsert: true,
         },
       }));
-      return StockAbbrevation.bulkWrite(updateOperations);
+      return StockAbbreviation.bulkWrite(updateOperations);
     }
   } catch (error) {
     console.log(error);

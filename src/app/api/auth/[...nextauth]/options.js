@@ -12,7 +12,7 @@ export const options = {
         const { email, password } = credentials;
         try {
           await connectDB();
-          const user = await Users.findOne({ email });
+          const user = await Users.findOne({ email }, "-id");
 
           if (!user) {
             return null;

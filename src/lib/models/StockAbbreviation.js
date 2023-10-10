@@ -1,13 +1,14 @@
 import mongoose from "mongoose";
 
 const stockAbbreviationSchema = new mongoose.Schema({
+  guid: { type: String, required: true },
   fullName: String,
   abbrev: String,
   vCount: String,
 });
 
-const StockAbbrevation =
-  mongoose.models.StockAbbrevation ||
-  mongoose.model("StockAbbrevation", stockAbbreviationSchema);
+const StockAbbreviation =
+  mongoose.models.stockAbbreviation ||
+  mongoose.model("stockAbbreviation", stockAbbreviationSchema);
 
-export default StockAbbrevation;
+export default StockAbbreviation;

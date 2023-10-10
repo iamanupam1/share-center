@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const stockTrendDataSchema = new mongoose.Schema({
+  guid: { type: String, required: true },
   symbol: {
     type: String,
     required: true,
