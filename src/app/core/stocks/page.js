@@ -1,14 +1,11 @@
 import { getStockAbbreviation } from "@/actions/stock/stockAbbrevation";
 import { getUserStocks } from "@/actions/stock/userStock";
-import { options } from "@/app/api/auth/[...nextauth]/options";
 import Layout from "@/components/common/Layout";
 import AddStockComponent from "@/components/stocks/AddStockComponent";
-import { getServerSession } from "next-auth";
 import React from "react";
 
 async function StockPage() {
-  const session = await getServerSession(options);
-  const userStocks = await getUserStocks(session?.user?._id);
+  const userStocks = await getUserStocks();
   const latestStockAbbreviation = await getStockAbbreviation();
   return (
     <Layout>

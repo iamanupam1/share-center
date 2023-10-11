@@ -1,7 +1,9 @@
 import ChartComponent from "./ChartComponent";
 import MonthlyStatComponent from "./MonthlyStatComponent";
+import { getUserStocks } from "@/actions/stock/userStock";
 
-const LandingPage = ({ latestStockList, latestStockAbbreviation }) => {
+const LandingPage = async ({ latestStockList, latestStockAbbreviation }) => {
+  const chartComponentData = await getUserStocks();
   const getFullName = (abbrev) => {
     return (
       latestStockAbbreviation.find((item) => item.abbrev === abbrev)
@@ -16,14 +18,14 @@ const LandingPage = ({ latestStockList, latestStockAbbreviation }) => {
           <div className="flex items-center justify-between mb-4">
             <div className="flex-shrink-0">
               <span className="text-xl font-bold leading-none text-gray-900 sm:text-2xl dark:text-white">
-                NPR 5,385
+                {chartComponentData.length ? "NPR 5,385" : "N/A"}
               </span>
               <h3 className="text-base font-light text-gray-500 dark:text-gray-400">
                 Last Day
               </h3>
             </div>
             <div className="flex items-center justify-end flex-1 text-base font-medium text-green-500 dark:text-green-400">
-              12.5%
+              {chartComponentData.length ? "12.5%" : "N/A"}
               <svg
                 className="w-5 h-5"
                 fill="currentColor"
@@ -38,7 +40,9 @@ const LandingPage = ({ latestStockList, latestStockAbbreviation }) => {
               </svg>
             </div>
           </div>
-          <ChartComponent />
+          <ChartComponent
+            chartComponentData={JSON.parse(JSON.stringify(chartComponentData))}
+          />
         </div>
         {/*Tabs widget */}
         <div className="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">

@@ -2,14 +2,28 @@
 import React from "react";
 import "chart.js/auto";
 import { Bar } from "react-chartjs-2";
+import Link from "next/link";
 
-const ChartComponent = () => {
+const noChartComponentDataLayout = () => {
+  return (
+    <Link
+      href="/core/stocks"
+      className="text-blue-500 hover:text-blue-700 underline"
+    >
+      Click here to add new stocks for Graphical View
+    </Link>
+  );
+};
+
+const ChartComponent = ({ chartComponentData }) => {
+  const labelLists = chartComponentData?.map((data) => data.symbol);
+  const dataList = chartComponentData?.map((data) => data.quantity);
   const data = {
-    labels: ["NABIL", "ADBL", "API", "CITY", "CBBL"],
+    labels: labelLists,
     datasets: [
       {
         label: "Last Transaction Price (LTP) ",
-        data: [575, 254.5, 177.2, 607.9, 940],
+        data: dataList,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(255, 159, 64, 0.2)",
@@ -28,7 +42,11 @@ const ChartComponent = () => {
       },
     ],
   };
-  return <Bar data={data} width={400} height={200} />;
+  return chartComponentData.length ? (
+    <Bar data={data} width={400} height={200} />
+  ) : (
+    noChartComponentDataLayout()
+  );
 };
 
 export default ChartComponent;
