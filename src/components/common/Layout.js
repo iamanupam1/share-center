@@ -6,9 +6,12 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import HeroIcon from "./HeroIcon";
 import { Avatar, Dropdown } from "flowbite-react";
+import PopupModal from "./modal/PopupModal";
+import { useState } from "react";
 
 const Layout = ({ children }) => {
   const { data: session } = useSession();
+  const [modalOpen, setModalOpen] = useState(undefined);
   const userFullName = session?.user.fullName;
   const userEmail = session?.user.email;
   const imagePlaceholder = userFullName?.slice(0, 2).toUpperCase() || "NA";
@@ -19,11 +22,11 @@ const Layout = ({ children }) => {
         <div className="px-3 py-3 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start">
-              <a href="" className="flex ml-2 md:mr-24">
+              <Link href="/core" className="flex ml-2 md:mr-24">
                 <h1 className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap text-white">
                   Share Center<span className="text-teal-600">.</span>
                 </h1>
-              </a>
+              </Link>
               <form className="hidden lg:block lg:pl-3.5">
                 <label htmlFor="topbar-search" className="sr-only">
                   Search
@@ -66,11 +69,19 @@ const Layout = ({ children }) => {
                       {userEmail}
                     </span>
                   </Dropdown.Header>
-                  <Dropdown.Item>Dashboard</Dropdown.Item>
-                  <Dropdown.Item>Settings</Dropdown.Item>
-                  <Dropdown.Item>Earnings</Dropdown.Item>
+                  <Dropdown.Item>
+                    <Link href="/core">Dashboard</Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <Link href="/core/user/profile">Profile</Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item>
+                    <Link href="/core/manage">Manage Notifier</Link>
+                  </Dropdown.Item>
                   <Dropdown.Divider />
-                  <Dropdown.Item>Logout out</Dropdown.Item>
+                  <Dropdown.Item onClick={() => setModalOpen("pop-up")}>
+                    Logout
+                  </Dropdown.Item>
                 </Dropdown>
               </div>
             </div>
@@ -109,7 +120,7 @@ const Layout = ({ children }) => {
                 <div className="pt-2 space-y-2">
                   <a
                     type="button"
-                    onClick={() => signOut()}
+                    onClick={() => setModalOpen("pop-up")}
                     className="flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg hover:bg-red-500 text-white hover:text-white cursor-pointer"
                   >
                     <HeroIcon
@@ -118,6 +129,12 @@ const Layout = ({ children }) => {
                     />
                     <span className="ml-3">Log Out</span>
                   </a>
+                  <PopupModal
+                    handleSubmit={() => signOut()}
+                    modalOpen={modalOpen}
+                    setModalOpen={setModalOpen}
+                    modalText="Are you sure you want to logout?"
+                  />
                 </div>
               </div>
             </div>

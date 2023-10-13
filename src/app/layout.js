@@ -1,3 +1,4 @@
+import ProgressBarProvider from "./ProgressBarProvider";
 import { AuthProvider } from "./Provider";
 import "./globals.css";
 import { Inter } from "next/font/google";
@@ -13,7 +14,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body suppressHydrationWarning={true} className={inter.className}>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          <ProgressBarProvider>{children}</ProgressBarProvider>
+        </AuthProvider>
       </body>
     </html>
   );
