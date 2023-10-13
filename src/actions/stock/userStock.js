@@ -10,7 +10,7 @@ export const revalidate = 0;
 
 export const getUserStocks = async () => {
   const session = await getServerSession(options);
-  if (!session["user"]["_id"]) return null;
+  if (!session) return null;
   try {
     connectDB();
     const stocks = await UserStocks.find({ user: session?.user?._id });
@@ -22,7 +22,7 @@ export const getUserStocks = async () => {
 
 export const addUserStock = async (payload) => {
   const session = await getServerSession(options);
-  if (!payload || !session["user"]["_id"]) return null;
+  if (!payload || !session) return null;
   try {
     const { symbol, quantity } = payload;
     connectDB();

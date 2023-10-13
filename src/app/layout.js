@@ -1,7 +1,7 @@
-import ProgressBarProvider from "./ProgressBarProvider";
-import { AuthProvider } from "./Provider";
+import { AuthProvider } from "@/components/providers/Provider";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import ProgressBarProvider from "@/components/providers/ProgressBarProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
