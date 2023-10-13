@@ -26,7 +26,7 @@ const PopupModal = ({
           </h3>
           <div className="flex justify-center gap-4">
             <Button color="failure" onClick={() => handleSubmit()}>
-              Yes, I'm sure
+              Yes, I am sure
             </Button>
             <Button color="gray" onClick={() => setModalOpen(undefined)}>
               No, cancel
