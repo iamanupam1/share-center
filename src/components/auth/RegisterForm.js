@@ -40,7 +40,7 @@ const RegisterForm = () => {
       if (resp.data) {
         resetFields();
         setIsLoading(false);
-        router.push("/core");
+        router.push("/");
       }
       return null;
     } catch (error) {

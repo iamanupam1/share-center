@@ -7,7 +7,12 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Share Center",
-  description: "A collection for Nepal Share Market",
+  description: "A descriptive Share Market Mnager Tool for Nepal Share Market",
+  icons: {
+    icon: "/images/favicon-16X16.png",
+    shortcut: "/images/favicon-32x32.png",
+    apple: "/images/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({ children }) {
