@@ -2,7 +2,7 @@ import ChartComponent from "./ChartComponent";
 import MonthlyStatComponent from "./MonthlyStatComponent";
 import { getUserStocks } from "@/actions/stock/userStock";
 
-const LandingPage = async ({ latestStockList, latestStockAbbreviation }) => {
+const LandingPageComponent = async ({ latestStockList, latestStockAbbreviation }) => {
   const chartComponentData = await getUserStocks();
   const getFullName = (abbrev) => {
     return (
@@ -182,4 +182,4 @@ const LandingPage = async ({ latestStockList, latestStockAbbreviation }) => {
   );
 };
 
-export default LandingPage;
+export default LandingPageComponent;

@@ -1,10 +1,10 @@
 import Layout from "@/components/common/Layout";
-import React from "react";
+import UserProfileComponent from "@/components/core/UserProfileComponent";
 
 const ProfilePage = () => {
   return (
     <Layout>
-      <div>ProfilePage</div>
+      <UserProfileComponent />
     </Layout>
   );
 };
