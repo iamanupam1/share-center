@@ -1,11 +1,11 @@
 import { getStockAbbreviation } from "@/actions/stock/stockAbbrevation";
-import { getUserStocks } from "@/actions/stock/userStock";
+import { getUserStocksLatestValuation } from "@/actions/stock/userStock";
 import Layout from "@/components/common/Layout";
 import AddStockComponent from "@/components/stocks/AddStockComponent";
 import React from "react";
 
 async function StockPage() {
-  const userStocks = await getUserStocks();
+  const userStocks = await getUserStocksLatestValuation();
   const latestStockAbbreviation = await getStockAbbreviation();
   return (
     <Layout>
@@ -55,7 +55,7 @@ async function StockPage() {
                         </div>
                       </div>
                       <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                        NPR 445,467
+                        NPR {stock.latestValuation || "N/A"}
                       </div>
                     </div>
                   </li>

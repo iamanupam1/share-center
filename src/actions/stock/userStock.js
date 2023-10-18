@@ -3,6 +3,7 @@ import { connectDB } from "@/lib/helpers/database";
 import UserStocks from "@/lib/models/UserStock";
 import { getServerSession } from "next-auth";
 import { v4 as uuidv4 } from "uuid";
+import { getLatestStockData } from "./stockTrend";
 
 export const maxDuration = 10;
 export const dynamic = "force-dynamic";
@@ -15,6 +16,26 @@ export const getUserStocks = async () => {
     connectDB();
     const stocks = await UserStocks.find({ user: session?.user?._id });
     return stocks;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getUserStocksLatestValuation = async () => {
+  const session = await getServerSession(options);
+  if (!session) return null;
+  try {
+    connectDB();
+    let stocks = await UserStocks.find({ user: session?.user?._id });
+    const latestStockData = await getLatestStockData();
+    const valuatedStock = stocks.map((stock) => {
+      const ltp =
+        latestStockData.find((item) => item.symbol == stock.symbol)?.ltp ||
+        null;
+      stock.latestValuation = Number(stock.quantity) * Number(ltp);
+      return stock;
+    });
+    return valuatedStock;
   } catch (error) {
     console.log(error);
   }
