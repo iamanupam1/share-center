@@ -68,7 +68,11 @@ const AddEditStockComponent = ({
     });
   };
   return (
-    <div className="bg-white rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800">
+    <div
+      className={` ${
+        !selectedSymbol ? "border border-gray-200 p-4 sm:p-6" : ""
+      } bg-white  rounded-lg shadow-sm dark:border-gray-700  dark:bg-gray-800`}
+    >
       <h3 className="flex items-center mb-4 text-lg font-semibold text-gray-900 dark:text-white">
         {headerText} Share
       </h3>
@@ -79,7 +83,7 @@ const AddEditStockComponent = ({
         id="long-value-select"
         instanceId="long-value-select"
         onChange={(value) => setSelectedValue(value)}
-        disabled={isPending}
+        isDisabled={isPending || selectedSymbol}
       />
       <input
         value={shareQuantity}
