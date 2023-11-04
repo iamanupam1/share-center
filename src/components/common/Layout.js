@@ -134,6 +134,7 @@ const Layout = ({ children }) => {
                     modalOpen={modalOpen}
                     setModalOpen={setModalOpen}
                     modalText="Are you sure you want to logout?"
+                    iconName="ArrowRightOnRectangleIcon"
                   />
                 </div>
               </div>

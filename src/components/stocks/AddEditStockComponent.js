@@ -5,12 +5,26 @@ import Select from "react-select";
 import Loader from "../common/Loader";
 import { useRouter } from "next/navigation";
 
-const AddStockComponent = ({ latestStockAbbreviation }) => {
+const AddEditStockComponent = ({
+  latestStockAbbreviation,
+  headerText = "Add",
+  selectedSymbol = "",
+  selectedQuantity = "",
+}) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [isFetching, setIsFetching] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("");
-  const [shareQuantity, setShareQuantity] = useState("");
+  const [selectedValue, setSelectedValue] = useState(
+    selectedSymbol
+      ? {
+          label: latestStockAbbreviation.find(
+            (item) => item.abbrev === selectedSymbol
+          )?.fullName,
+          symbol: selectedSymbol,
+        }
+      : ""
+  );
+  const [shareQuantity, setShareQuantity] = useState(selectedQuantity);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const addShareOptions = latestStockAbbreviation.map((options) => {
@@ -23,7 +37,7 @@ const AddStockComponent = ({ latestStockAbbreviation }) => {
     setSelectedValue("");
     setShareQuantity("");
   };
-  const handleAddStockClick = async () => {
+  const handleAddEditStockClick = async () => {
     setError("");
     setIsLoading(true);
     setIsFetching(true);
@@ -54,9 +68,9 @@ const AddStockComponent = ({ latestStockAbbreviation }) => {
     });
   };
   return (
-    <div className="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+    <div className="bg-white rounded-lg shadow-sm dark:border-gray-700 dark:bg-gray-800">
       <h3 className="flex items-center mb-4 text-lg font-semibold text-gray-900 dark:text-white">
-        Add Share
+        {headerText} Share
       </h3>
       <Select
         options={addShareOptions}
@@ -84,12 +98,12 @@ const AddStockComponent = ({ latestStockAbbreviation }) => {
       )}
       <button
         className="bg-blue-500 text-white px-4 py-2 rounded w-full"
-        onClick={handleAddStockClick}
+        onClick={handleAddEditStockClick}
       >
-        {isLoading ? <Loader /> : "Add Now"}
+        {isLoading ? <Loader /> : `${headerText} Now`}
       </button>
     </div>
   );
 };
 
-export default AddStockComponent;
+export default AddEditStockComponent;
