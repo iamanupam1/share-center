@@ -41,12 +41,21 @@ export const getUserStocksLatestValuation = async () => {
   }
 };
 
-export const addUserStock = async (payload) => {
+export const addEditUserStock = async (payload) => {
   const session = await getServerSession(options);
   if (!payload || !session) return null;
   try {
     const { symbol, quantity } = payload;
     connectDB();
+    const existingStock = await UserStocks.findOne({ symbol });
+
+    // Updating quantity of already added stock
+    if (existingStock) {
+      existingStock.quantity = quantity;
+      await existingStock.save();
+      return existingStock;
+    }
+
     const addedStock = new UserStocks({
       guid: uuidv4(),
       symbol,
@@ -55,6 +64,17 @@ export const addUserStock = async (payload) => {
     });
     await addedStock.save();
     return addedStock;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteUserStock = async (guid) => {
+  if (!guid) return null;
+  try {
+    connectDB();
+    const result = await UserStocks.deleteOne({ guid });
+    return result.deletedCount;
   } catch (error) {
     console.log(error);
   }

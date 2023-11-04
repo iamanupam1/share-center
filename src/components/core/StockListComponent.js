@@ -3,14 +3,21 @@ import React, { useState } from "react";
 import HeroIcon from "../common/HeroIcon";
 import PopupModal from "../common/modal/PopupModal";
 import EditStockModal from "../stocks/EditStockModal";
+import axios from "axios";
 
 const StockListComponent = ({ userStocks, latestStockAbbreviation }) => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(undefined);
   const [editModalOpen, setEditModalOpen] = useState(undefined);
   const [activeStockSelection, setActiveStockSelection] = useState(undefined);
 
-  const handleStockDelete = () => {
+  const handleStockDelete = async () => {
     if (!activeStockSelection) return;
+    try {
+      await axios.delete(`/api/v1/user/stock/${activeStockSelection}`);
+      setDeleteModalOpen(undefined);
+    } catch (error) {
+      console.log(error);
+    }
     return;
   };
   return (

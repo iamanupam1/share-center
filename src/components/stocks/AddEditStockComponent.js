@@ -20,7 +20,7 @@ const AddEditStockComponent = ({
           label: latestStockAbbreviation.find(
             (item) => item.abbrev === selectedSymbol
           )?.fullName,
-          symbol: selectedSymbol,
+          value: selectedSymbol,
         }
       : ""
   );
@@ -52,7 +52,9 @@ const AddEditStockComponent = ({
         quantity: shareQuantity,
       });
       if (resp.data) {
-        resetFields();
+        if (!selectedSymbol) {
+          resetFields();
+        }
         setIsLoading(false);
       }
       return null;
