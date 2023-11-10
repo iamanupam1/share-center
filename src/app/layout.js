@@ -1,6 +1,7 @@
 import { AuthProvider } from "@/components/providers/Provider";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import ProgressBarProvider from "@/components/providers/ProgressBarProvider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,7 +21,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body suppressHydrationWarning={true} className={inter.className}>
         <AuthProvider>
-          <ProgressBarProvider>{children}</ProgressBarProvider>
+          <ProgressBarProvider>
+            {children}
+            <Analytics />
+          </ProgressBarProvider>
         </AuthProvider>
       </body>
     </html>
